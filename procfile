@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 web: gunicorn app:app
-=======
-web: gunicorn app:app
->>>>>>> 529cf81 (initial Richer app commit)
