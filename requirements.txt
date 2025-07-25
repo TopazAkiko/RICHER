@@ -1,8 +1,6 @@
-txt
 Flask
-Flask_SQLAlchemy
+Flask-SQLAlchemy
 Flask-WTF
 WTForms
 Werkzeug
 gunicorn
-
