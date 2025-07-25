@@ -1,32 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Login - Richer</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-  <h2>Login</h2>
+from forms import LoginForm  # ✅ Make sure you import it
 
-  <form method="POST" action="{{ url_for('login') }}">
-    {{ form.hidden_tag() }}
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()  # ✅ Create the form instance
 
-    <div>
-      {{ form.email.label }}<br>
-      {{ form.email(size=32) }}
-    </div>
+    if form.validate_on_submit():  # ✅ Use Flask-WTF's built-in validator
+        email = form.email.data
+        password = form.password.data
+        user = User.query.filter_by(email=email).first()
+        if user and check_password_hash(user.password, password):
+            session['user_id'] = user.id
+            return redirect(url_for('dashboard'))
+        return 'Invalid login'
 
-    <div>
-      {{ form.password.label }}<br>
-      {{ form.password(size=32) }}
-    </div>
-
-    <div>
-      {{ form.submit() }}
-    </div>
-  </form>
-
-  <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
-  <p><a href="{{ url_for('index') }}">Back to Home</a></p>
-</body>
-</html>
+    return render_template('login.html', form=form)  # ✅ Pass the form to template!
