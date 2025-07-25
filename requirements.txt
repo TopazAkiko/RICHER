@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 Flask
 Flask_SQLAlchemy
 Flask-WTF
 WTForms
 Werkzeug
 gunicorn
+=======
+Flask
+Flask_SQLAlchemy
+Flask-WTF
+WTForms
+Werkzeug
+gunicorn
+>>>>>>> 529cf81 (initial Richer app commit)
